@@ -1,0 +1,15 @@
+{
+    "user":
+    {
+        "1":{
+           "username":"1@123.com",
+           "password":"2",
+           "mail":"3"
+        },
+        "2":{
+            "username":"2",
+            "password":"1",
+            "mail":"4"
+        }
+    }
+}
