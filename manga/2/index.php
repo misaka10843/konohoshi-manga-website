@@ -1,4 +1,7 @@
 <?php
+define('misaka', TRUE);
+?>
+<?php
 /*******************************
  * 
  *获得上级json存储的此漫画相关信息
@@ -111,6 +114,7 @@ function manga($ff){
 ?>
 <html lang="zh">
 	<head>
+	<?php include ( "../../header.php");?>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>
 			
@@ -119,7 +123,7 @@ function manga($ff){
 		<link rel="stylesheet" type="text/css" href="./test.css">
 	</head>
 	<body>
-	<?php include ("../../header.php");?>
+	<?php include ("../../body.php");?>
 		<div id="wrapper">
 			<div id="main" class="comic">
 				<!-- ▼Main area -->

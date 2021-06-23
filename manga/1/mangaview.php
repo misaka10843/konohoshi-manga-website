@@ -1,4 +1,7 @@
 <?php
+define('misaka', TRUE);
+?>
+<?php
 
 /*******************************
  * 
@@ -141,6 +144,7 @@ return $i;
 			<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 			<html lang="zh">
 				<head>
+				<?php include ( "../../header.php");?>
 					<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 					<title>
 					</title>
@@ -175,7 +179,7 @@ return $i;
 					</script>
 				</head>
 				<body>
-					<?php include ( "../../header.php");?>
+					<?php include ( "../../body.php");?>
 						<div id="wrapper">
 							<div id="content" class="watch">
 								<div id="main">
@@ -244,7 +248,7 @@ return $i;
 																	<div class="center_img  center_img_size_80">
 																		<a class="center_img_inner " href="./">
 																			<img class='lazyload' data-src="./top.jpg" alt="">
-																			<span class="center_img_spring">
+																			<span class="center_img class='lazyload'_spring">
 																				&nbsp;
 																			</span>
 																		</a>
@@ -294,15 +298,15 @@ return $i;
 												<div id="ko_content_list" class="content_list">
 													<div class="pages">
 														<ul id="page_contents" class="image_container isolated">
-															<script>var name = pagenum;																
+															<script>																
 															for (var i = 1; i <= <?php echo(mangajpg($ff)) ?>; i++) {
 																	var a = i;
 																	if (a <= 9) {
 																		a = a;
 																	}
-																	document.write("<li class='page'><div class='note' style='width: 650px; height:1000px; position: relative;'><img class='lazyload' id='manga" + i + "' data-src='./manga/" + name + "/" + a + ".jpg' style='user-select: none; display: block;'' width='650' height='1000'/></biv></li>");
+																	document.write("<li class='page'><div class='note' style='width: 650px; height:1000px; position: relative;'><img class='lazyload' id='manga" + i + "' data-src='./manga/" + <?php echo($page) ?> + "/" + a + ".jpg' style='user-select: none; display: block;'' width='650' height='1000'/></biv></li>");
 																}
-																
+																var name = pagenum;
 
 																//>>>>>>>>>>>>>>>>>加载漫（ben）画（zi）<<<<<<<<<<<<<<<<<<
 

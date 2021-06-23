@@ -1,4 +1,6 @@
 <?php 
+define('misaka', TRUE);
+
 $num = 1;
 
 function manga($ff){
@@ -19,54 +21,26 @@ function manga($ff){
 $json = file_get_contents('manga/index.json');
 $json = json_decode($json, true);
 ?>
-
+<?php include ("action/useraction.php");?>
+<script>
+	function onload(){
+	Notiflix.Notify.Warning('这个系统还是测试版，还请等待misaka的项目推送qwq');
+	Notiflix.Notify.Success('初始化完成');
+}
+</script>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang='zh'>
+	<head>
 	<meta charset=utf-8>
-	<title>
-		
-	</title>
-	<style>
-		div,ul,li,h2 {
-			margin:0px;
-			padding:0px;
-			font-size:100%;
-			letter-spacing:0px;
-			word-wrap:break-word
-		}
-		body {
-			margin:0
-				auto;
-			padding:0px;
-			color:#333333;
-			font-size:12px;
-			line-height:120%;
-			text-align:center;
-		}
-		img {
-			border:0px;
-			-ms-interpolation-mode:bicubic
-		}
-		.cfix:after {
-			content:".";
-			display:block;
-			height:0px;
-			clear:both;
-			visibility:hidden
-		}
-		.cfix {
-			display:block
-		}
-		#wrapper {
-			text-align:left
-		}
-	</style>
+	<?php include ("header.php");?>
+	<title>主页-<?php echo $title ?></title>
 	<link rel="stylesheet" type="text/css" href="./css/main.css">
+	<link rel="stylesheet" type="text/css" href="./css/page/index-php.css">
 	<link rel="shortcut icon" href="">
 	</head>
-	<body class="seigatop seiga">
-	<?php include ("header.php");?>
-		<div id=wrapper>
+	<body class="seigatop seiga" onload="onload()">
+	<?php include ("body.php");?>
+		<div id=wrapper class=manga-card>
 			<div id=header_block>
 			</div>
 			<div id=main class=cfix>
@@ -89,9 +63,9 @@ $json = json_decode($json, true);
 									}
 									$title = $json['book'][$b]['title'];
 									echo ("
-									<div class=popular_illust_block__item>
+									<div class='popular_illust_block__item manga-card'>
 									<a href='/manga/{$a}'>
-										<div class=popular_illust_block__item__thumbnail>
+										<div class='popular_illust_block__item__thumbnail'>
 											<div class=center_img>
 												<span class=center_img_inner>
 													<img class=lazyload alt data-src='/manga/{$a}/top.jpg' style=display:inline>
@@ -126,47 +100,51 @@ $json = json_decode($json, true);
 								<div class=top_personalize_block__body>
 									<div class=top_personalize_block__body__itemlist>
 									<?php 
-								for ($x=1; $x <= $manganum; $x = $x+1){
-									$a = $x;
-									$b = $a - 1;
-									if ($a <= 9){
-										$a = $a;
-									}
-									$dir = './manga/'.$a.'/manga/';
-    								$handle = opendir($dir);
-    								$i = 0;
-    								while(false !== $file=(readdir($handle))){
-    								 if($file !== '.' && $file != '..' && $file != 'index.json')
-    								 {
-    								   $i++;
-    								  }
-    								}
-    								closedir($handle);
-									$title = $json['book'][$b]['title'];
-									$lastupdate = $json['book'][$b]['lastupdate'];
+								if(!empty($username)){
+								$conn = mysqli_connect('localhost','test123','test123','test123');
+								//准备SQL语句,查询用户关注
+								$sql_select="SELECT follow_id FROM user WHERE id = '$id'";
+								//执行SQL语句
+								$ret = mysqli_query($conn,$sql_select);
+								$row = mysqli_fetch_array($ret);
+								$conn->close();
+								
+								$row = explode(",",$row['follow_id']);
+								$a = sizeof($row);
+								for ($i = 0; $i < $a ; $i++){
+									$b = $i;
+									$b = $row[$b];
+									$conn = mysqli_connect('localhost','test123','test123','test123');
+									//准备SQL语句,查询用户关注
+									$sql_select="SELECT * FROM manga WHERE id = '$b'";
+									//执行SQL语句
+									$ret = mysqli_query($conn,$sql_select);
+									$row1 = mysqli_fetch_array($ret);
+									$conn->close();
+
 									echo ("
 										<div class=top_personalize_block__body__item>
 											<div class=top_personalize_block__body__item--thumbnail>
-												<a href='./manga/{$a}'>
-													<img class=lazyload data-src='/manga/{$a}/top.jpg' style=display:inline>
+												<a href='./manga/{$row1['id']}'>
+													<img class=lazyload data-src='/manga/{$row1['id']}/top.jpg' style=display:inline>
 												</a>
 											</div>
 											<div class=top_personalize_block__body__item--info>
 												<div class=top_personalize_block__body__item--info-content_title>
-													<a href='./manga/{$a}'>
-														{$title}
+													<a href='./manga/{$row1['id']}'>
+														{$row1['title']}
 													</a>
 												</div>
 												<div class=top_personalize_block__body__item--info-episode_title>
 													最新話：
-													<a href='./manga/{$a}/mangaview.php?page={$i}'>
-														第{$i}話
+													<a href='./manga/{$row1['id']}/mangaview.php?page={$row1['lastpage']}'>
+														第{$row1['lastpage']}話
 													</a>
 												</div>
 												<div class=top_personalize_block__body__item--info-last_updated>
 													<div class=top_personalize_block__body__item--info-last_updated-inner>
 														<time>
-														{$lastupdate}
+														{$row1['lastupdate']}
 														</time>
 													</div>
 												</div>
@@ -175,6 +153,16 @@ $json = json_decode($json, true);
 									</div>
 									");
 								}
+							}else{
+								echo ("<style>
+								.top_personalize_block__body__itemlist{
+									background:url(./img/nologin.png) no-repeat;
+									background-size:150px 200px;  
+									background-position:center center;
+									height: 300px;
+								}
+								</style>");
+							}
 								?>
 								</div>
 							</div>
