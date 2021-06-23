@@ -19,6 +19,17 @@
 ### 2021.6.23
 更新了一堆的东西，并且将部分数据转移至MySQL（数据库暂不能放出文件，请谅解）
 
+## 一些截图
+
+<p align="center">
+<img src="https://i.loli.net/2021/06/23/FeMDtR4lAmSvc9k.png"/>
+<img src="https://i.loli.net/2021/06/23/ckOeWqzyYZSw72m.png"/>
+<img src="https://i.loli.net/2021/06/23/f8thVGHoI2EbAq6.png"/>
+<img src="https://i.loli.net/2021/06/23/KuYJpbtxEgcD7MO.png"/>
+<img src="https://i.loli.net/2021/06/23/cy63dqoG4vzlLMO.png"/>
+<img src="https://i.loli.net/2021/06/23/2Bn87gtPZV5xJIf.png"/>
+</p>
+
 ## README统计
 ![统计](https://count.getloli.com/get/@misaka10843?theme=elbooru)
 
