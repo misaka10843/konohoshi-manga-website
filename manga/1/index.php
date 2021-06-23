@@ -117,7 +117,7 @@ function manga($ff){
 	<?php include ( "../../header.php");?>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>
-			
+		<?php echo($mangatitle."-".$title); ?>
 		</title>
 		<link rel="shortcut icon" href="">
 		<link rel="stylesheet" type="text/css" href="./test.css">
