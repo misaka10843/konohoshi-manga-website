@@ -14,7 +14,7 @@ $PD = $PD - 1;
 $json = file_get_contents('../index.json');
 $json = json_decode($json, true);
 //获取相关信息
-$title = $json['book'][$PD]['title'];
+$mangatitle = $json['book'][$PD]['title'];
 $author = $json['book'][$PD]['author'];
 $introduce = $json['book'][$PD]['introduce'];
 $updatetime = $json['book'][$PD]['updatetime'];
@@ -125,7 +125,7 @@ function manga($ff){
 	<body>
 	<?php include ("../../body.php");?>
 		<div id="wrapper">
-			<div id="main" class="comic">
+			<div id="main" class="comic fade-in">
 				<!-- ▼Main area -->
 				<div id="mg_main_column" class="main_column">
 					<div id="contents" data-content_id="41670" data-is_favorite="1" data-favorite_count="1964">
@@ -137,7 +137,7 @@ function manga($ff){
 							</div>
 							<div class="main_title">
 								<h1 style="display: inline;">
-									<?php echo($title); ?>
+									<?php echo($mangatitle); ?>
 								</h1>
 								<div class="author">
 									<h3>
