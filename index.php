@@ -92,7 +92,7 @@ $json = json_decode($json, true);
 						</div>
 					</div>
 					<div id=main_area_r>
-						<div id=top_personalize_box--manga>
+						<div id=top_personalize_box--manga class=fade-in>
 							<div class=top_personalize_block>
 								<div class=top_personalize_block__header>
 									关注的漫画
