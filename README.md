@@ -6,7 +6,8 @@
 <img width="256px" height="256px" src="/img/logo.svg"/>
 </p>
 
-
+<br>
+<br>
 
 ## 技术栈
 
@@ -22,7 +23,8 @@
 
 此程序网站暂未完全使用数据库，任何数据存储可能是php检测文件数量或者获取json
 
-
+<br>
+<br>
 
 ## 更新
 ### 2021.8.30
@@ -38,16 +40,19 @@
 ### 2021.6.23
 更新了一堆的东西，并且将部分数据转移至MySQL（数据库暂不能放出文件，请谅解）
 
+<br>
+<br>
 
-
-## 特性(bug与类似bug)[打岔为已验证]
+## 特性(bug与类似bug)[打√为已验证]
 ### bug
-[] 暂无
+- [ ] 暂无
 
 ### 类似bug
-[x] 网站域名只能绑定一个,比如`1.com`而不能绑定`1.com`和`2.com`,不然会将setting.json的路径输出为`http://1.com2.com`
 
+- [x] 网站域名只能绑定一个,比如`1.com`而不能绑定`1.com`和`2.com`,不然会将setting.json的路径输出为`http://1.com2.com` 
 
+<br>
+<br>
 
 ## 一些截图
 
@@ -60,7 +65,8 @@
 <img src="https://i.loli.net/2021/06/23/2Bn87gtPZV5xJIf.png"/>
 </p>
 
-
+<br>
+<br>
 
 ## README统计
 ![统计](https://count.getloli.com/get/@misaka10843?theme=elbooru)
