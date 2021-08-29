@@ -21,6 +21,9 @@
 此程序网站暂未完全使用数据库，任何数据存储可能是php检测文件数量或者获取json
 
 ## 更新
+### 2021.8.30
+修复数据库，请注意数据库的账号密码库名必须是`test123`
+或者您在`loginaction.php`,`registeraction.php`,`useraction.php`,`index.php`,`user.php`中搜索相关字符串来修改数据库(暂时未达到中控)
 ### 2021.8.29
 项目将会以vue为前端来重新构建qwq
 
