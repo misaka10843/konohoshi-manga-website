@@ -27,6 +27,8 @@
 <br>
 
 ## 更新
+### 2021.8.31
+因为考虑到前后端分离以及php转vue的麻烦程度，不考虑使用vue构建前端，而继续使用原生php
 ### 2021.8.30
 修复数据库，请注意数据库的账号密码库名必须是`test123`
 或者您在`loginaction.php`,`registeraction.php`,`useraction.php`,`index.php`,`user.php`中搜索相关字符串来修改数据库(暂时未达到中控)
