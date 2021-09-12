@@ -7,7 +7,7 @@
     //判断用户名和密码是否为空
     if(!empty($username)&&!empty($password)) {
         //建立连接
-        $conn = mysqli_connect('localhost','test123','test123','test123');
+        include("./database.php");
         //准备SQL语句
         $sql_select = "SELECT username,password FROM user WHERE username = '$username' AND password = '$password'";
         //执行SQL语句

@@ -1,67 +1,144 @@
-
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
 */
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	vertical-align: baseline;
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
 }
+
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
 }
+
 body {
-	line-height: 1;
+  line-height: 1;
 }
-ol, ul {
-	list-style: none;
+
+ol,
+ul {
+  list-style: none;
 }
-blockquote, q {
-	quotes: none;
+
+blockquote,
+q {
+  quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
 }
+
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
+
 /******************
 
 reset.css结束
 
 *******************/
 
-.navigation nav ul li a {
-  float: left;
-  margin: 20px 0 0 5%;
-  padding: 11px 20px; 
-  font-size: 14px;
-  text-align: center;
-  text-decoration: none;
-  color: #fff;    
-  font-family: Tahoma;
-  outline: none;
-}
+
 
 /* -------------------------------- 
 
@@ -73,6 +150,7 @@ header[role=banner] {
   height: 50px;
   background: #343642;
 }
+
 header[role=banner] #cd-logo {
   float: left;
   margin: 4px 0 0 5%;
@@ -88,19 +166,24 @@ header[role=banner] #cd-logo {
   -o-transform: scale(0.8);
   transform: scale(0.8);
 }
+
 header[role=banner] #cd-logo img {
   display: block;
 }
+
 header[role=banner]::after {
   /* clearfix */
   content: '';
   display: table;
   clear: both;
 }
+
 @media only screen and (min-width: 768px) {
   header[role=banner] {
     height: 80px;
+    width: 100%;
   }
+
   header[role=banner] #cd-logo {
     margin: 20px 0 0 5%;
     -webkit-transform: scale(1);
@@ -111,14 +194,27 @@ header[role=banner]::after {
   }
 }
 
+.navigation nav ul li a {
+  float: left;
+  margin: 10px 0 0 5%;
+  padding: 11px 20px;
+  font-size: 14px;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  font-family: Tahoma;
+  outline: none;
+}
+
 .main-nav {
   float: right;
   margin-right: 5%;
   width: 44px;
   height: 100%;
-  background: url("../img/cd-icon-menu.svg") no-repeat center center;
+  background: url("../img/icon-menu.svg") no-repeat center center;
   cursor: pointer;
 }
+
 .main-nav ul {
   position: absolute;
   top: 0;
@@ -130,6 +226,7 @@ header[role=banner]::after {
   -o-transform: translateY(-100%);
   transform: translateY(-100%);
 }
+
 .main-nav ul.is-visible {
   -webkit-transform: translateY(50px);
   -moz-transform: translateY(50px);
@@ -137,6 +234,7 @@ header[role=banner]::after {
   -o-transform: translateY(50px);
   transform: translateY(50px);
 }
+
 .main-nav a {
   display: block;
   height: 50px;
@@ -146,6 +244,7 @@ header[role=banner]::after {
   border-top: 1px solid #3b3d4b;
   color: #FFF;
 }
+
 @media only screen and (min-width: 768px) {
   .main-nav {
     width: auto;
@@ -153,6 +252,19 @@ header[role=banner]::after {
     background: none;
     cursor: auto;
   }
+
+  .navigation nav ul li a {
+    float: left;
+    margin: 20px 0 0 5%;
+    padding: 11px 20px;
+    font-size: 14px;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    font-family: Tahoma;
+    outline: none;
+  }
+
   .main-nav ul {
     position: static;
     width: auto;
@@ -163,6 +275,7 @@ header[role=banner]::after {
     transform: translateY(0);
     line-height: 80px;
   }
+
   .main-nav ul.is-visible {
     -webkit-transform: translateY(0);
     -moz-transform: translateY(0);
@@ -170,24 +283,30 @@ header[role=banner]::after {
     -o-transform: translateY(0);
     transform: translateY(0);
   }
+
   .main-nav li {
     display: inline-block;
     margin-left: 1em;
   }
+
   .main-nav li:nth-last-child(2) {
     margin-left: 2em;
   }
+
   .main-nav a {
     display: inline-block;
     height: auto;
     line-height: normal;
     background: transparent;
   }
-  .main-nav a.cd-signin, .main-nav a.cd-signup {
+
+  .main-nav a.cd-signin,
+  .main-nav a.cd-signup {
     padding: .6em 1em;
     border: 1px solid rgba(255, 255, 255, 0.6);
     border-radius: 50em;
   }
+
   .main-nav a.cd-signup {
     background: #2f889a;
     border: none;
@@ -200,10 +319,14 @@ xsigin/signup popup
 
 -------------------------------- */
 
-#cd-login, #cd-signup, #cd-reset-password {
+#cd-login,
+#cd-signup,
+#cd-reset-password {
   display: none;
 }
 
-#cd-login.is-selected, #cd-signup.is-selected, #cd-reset-password.is-selected {
+#cd-login.is-selected,
+#cd-signup.is-selected,
+#cd-reset-password.is-selected {
   display: block;
 }

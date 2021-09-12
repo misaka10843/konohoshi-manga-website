@@ -8,9 +8,9 @@
 
     if($password == $re_password) {
         //建立连接
-        $conn = mysqli_connect('localhost','test123','test123','test123');
+        include("./database.php");
         //准备SQL语句,查询用户名
-        $sql_select="SELECT username FROM User WHERE username = '$username'";
+        $sql_select="SELECT username FROM user WHERE username = '$username'";
         //执行SQL语句
         $ret = mysqli_query($conn,$sql_select);
         $row = mysqli_fetch_array($ret);

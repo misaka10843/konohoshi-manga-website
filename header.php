@@ -7,7 +7,7 @@ if(!defined('misaka')) {
     }
 
 
-$link = 'http://'.$_SERVER['SERVER_NAME'];
+$link = 'http://'.$_SERVER["HTTP_HOST"];
 
 $data = file_get_contents($link.'/settings.json'); 
 
