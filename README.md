@@ -52,6 +52,14 @@
 
 ### 重构前的截图
 
+### 重构后的截图(重构页面并没有做完qwq)
+
+![屏幕截图 2021-09-13 111614.png](https://i.loli.net/2021/09/13/wAyU4WunMDtjCei.png)
+
+![屏幕截图 2021-09-13 111643.png](https://i.loli.net/2021/09/13/Y9KmDX4QhU5rMWG.png)
+
+### 重构前的截图
+
 <p align="center">
 <img src="https://i.loli.net/2021/06/23/FeMDtR4lAmSvc9k.png"/>
 <img src="https://i.loli.net/2021/06/23/ckOeWqzyYZSw72m.png"/>
