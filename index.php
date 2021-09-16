@@ -1,187 +1,165 @@
-<?php 
-define('misaka', TRUE);
-
-$num = 1;
-
-function manga($ff){
-    $dir = './manga/'.$ff;
-    $handle = opendir($dir);
-    $i = 0;
-    while(false !== $file=(readdir($handle))){
-     if($file !== '.' && $file != '..' && $file != 'index.json')
-     {
-       $i++;
-      }
-    }
-    closedir($handle);
-   return $i;
-   }
-   $manganum = manga($ff);
-
-$json = file_get_contents('manga/index.json');
-$json = json_decode($json, true);
+<?php define( 'misaka', TRUE); 
+$isview = "0";
+$ismain = "1";
 ?>
-<?php include ("action/useraction.php");?>
-<script>
-	function onload(){
-	Notiflix.Notify.Warning('这个系统还是测试版，还请等待misaka的项目推送qwq');
-	Notiflix.Notify.Success('初始化完成');
-}
-</script>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang='zh'>
-	<head>
-	<meta charset=utf-8>
-	<?php include ("header.php");?>
-	<title>主页-<?php echo $title ?></title>
-	<link rel="stylesheet" type="text/css" href="./css/main.css">
-	<link rel="stylesheet" type="text/css" href="./css/page/index-php.css">
-	<link rel="shortcut icon" href="">
-	</head>
-	<body class="seigatop seiga" onload="onload()">
-	<?php include ("body.php");?>
-		<div id=wrapper class=manga-card>
-			<div id=header_block>
-			</div>
-			<div id=main class=cfix>
-				<div id=content class=cfix>
-					<div id=main_area_l class=main_content>
-						<div id=top_popular_illust_box class="itemlist_area cfix">
-							<div class=popular_illust_block>
-								<div class=popular_illust_block__title>
-									<h2>
-										人气漫画
-									</h2>
-								</div>
-								<div class=popular_illust_block__itemlist>
-								<?php 
-								for ($x=1; $x <= $manganum; $x = $x+1){
-									$a = $x;
-									$b = $a - 1;
-									if ($a <= 9){
-										$a = $a;
-									}
-									$title = $json['book'][$b]['title'];
-									echo ("
-									<div class='popular_illust_block__item manga-card'>
-									<a href='/manga/{$a}'>
-										<div class='popular_illust_block__item__thumbnail'>
-											<div class=center_img>
-												<span class=center_img_inner>
-													<img class=lazyload alt data-src='/manga/{$a}/top.jpg' style=display:inline>
-													<span class=center_img_spring>
-														&nbsp;
-													</span>
-												</span>
-											</div>
-										</div>
-										<div class=popular_illust_block__item__info>
-											<span class=popular_illust_block__item__info--title>
-												{$title}
-											</span>
-										</div>
-									</a>
-								</div>
-								");
-								}
-								?>
-								</div>
-							</div>
-						</div>
-						<div id=top_event_box class=content_area>
-						</div>
-					</div>
-					<div id=main_area_r>
-						<div id=top_personalize_box--manga class=fade-in>
-							<div class=top_personalize_block>
-								<div class=top_personalize_block__header>
-									关注的漫画
-								</div>
-								<div class=top_personalize_block__body>
-									<div class=top_personalize_block__body__itemlist>
-									<?php 
-								if(!empty($username)){
-								$conn = mysqli_connect('localhost','test123','test123','test123');
-								//准备SQL语句,查询用户关注
-								$sql_select="SELECT follow_id FROM user WHERE id = '$id'";
-								//执行SQL语句
-								$ret = mysqli_query($conn,$sql_select);
-								$row = mysqli_fetch_array($ret);
-								$conn->close();
-								
-								$row = explode(",",$row['follow_id']);
-								$a = sizeof($row);
-								for ($i = 0; $i < $a ; $i++){
-									$b = $i;
-									$b = $row[$b];
-									$conn = mysqli_connect('localhost','test123','test123','test123');
-									//准备SQL语句,查询用户关注
-									$sql_select="SELECT * FROM manga WHERE id = '$b'";
-									//执行SQL语句
-									$ret = mysqli_query($conn,$sql_select);
-									$row1 = mysqli_fetch_array($ret);
-									$conn->close();
+	<!DOCTYPE html>
+	<html lang="zh">
+		<head>
+			<?php include ( "header.php");?>
+		</head>
+<body class="seigatop seiga">
+<?php include ( "nav.php");?>
+<link href="/css/index.css" rel="stylesheet">
+	<div id="wrapper">
+		<div id="main" class="cfix">
+			<div id="content" class="cfix">
+				<div id="top_pickup_area">
+					<h2>
+						<strong>
+							PICKUP CONTENTS!
+						</strong>
+						<span class="line">
+							|
+						</span>
+						运营推荐
+					</h2>
+					<div style="position: absolute;padding-top: 7px">
+						<div id="top_pickup_list_wrapper">
+							<div id="top_pickup_list_items" style="visibility: visible; overflow: hidden; position: relative; z-index: 2; left: 0px; width: 950px;">
+								<ul id="top_pickup_list" class="cfix" style="margin: 0px; padding: 0px; position: relative; list-style: none; z-index: 1; ">
 
-									echo ("
-										<div class=top_personalize_block__body__item>
-											<div class=top_personalize_block__body__item--thumbnail>
-												<a href='./manga/{$row1['id']}'>
-													<img class=lazyload data-src='/manga/{$row1['id']}/top.jpg' style=display:inline>
-												</a>
-											</div>
-											<div class=top_personalize_block__body__item--info>
-												<div class=top_personalize_block__body__item--info-content_title>
-													<a href='./manga/{$row1['id']}'>
-														{$row1['title']}
-													</a>
-												</div>
-												<div class=top_personalize_block__body__item--info-episode_title>
-													最新話：
-													<a href='./manga/{$row1['id']}/mangaview.php?page={$row1['lastpage']}'>
-														第{$row1['lastpage']}話
-													</a>
-												</div>
-												<div class=top_personalize_block__body__item--info-last_updated>
-													<div class=top_personalize_block__body__item--info-last_updated-inner>
-														<time>
-														{$row1['lastupdate']}
-														</time>
-													</div>
-												</div>
-											</div>
-										</div>
+									<!--块开始-->
+                  <li class="top_pickup_list_item top_pickup_list_item--manga" style="overflow: hidden; float: left; width: 180px; height: 216px;">
+										<a href="/comic/manga.php?id=">
+											<span class="pickup_thumnail" style="background-color: rgb(1, 85, 209)">
+												<img src="https://deliver.cdn.nicomanga.jp/material/07cb2d/6844345qa?1562905486"
+												alt="">
+											</span>
+											<span class="pickup_txt">
+												
+											</span>
+											<span class="pickup_label">
+												<img src="/img/index/label_manga.png" width="60" height="36"
+												alt="">
+											</span>
+										</a>
+									</li>
+
+                  <!--块结束-->
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="main_area_l" class="main_content">
+					<div id="top_news_box" class="cfix">
+						<div class="top_news_block">
+							<div class="top_news_block__title">
+								<h2>
+									通知
+								</h2>
+								<a href="https://blog.nicovideo.jp/seiga/">
+									全部显示
+								</a>
+							</div>
+							<ul class="top_news_block__itemlist">
+                <!--块开始-->
+								<li class="top_news_block__item">
+									<div class="top_news_block__item__category top_news_block__item__category--manga">
+										漫画
 									</div>
-									");
-								}
-							}else{
-								echo ("<style>
-								.top_personalize_block__body__itemlist{
-									background:url(./img/nologin.png) no-repeat;
-									background-size:150px 200px;  
-									background-position:center center;
-									height: 300px;
-								}
-								</style>");
-							}
-								?>
+									<div class="top_news_block__item__date">
+										2021年09月01日
+									</div>
+									<div class="top_news_block__item__title">
+										<a href="https://info.nicomanga.jp/entry/2021/09/01/133558" rel="nofollow">
+											内容
+										</a>
+									</div>
+								</li>
+                <!--块结束-->
+							</ul>
+						</div>
+					</div>
+					<div id="top_popular_illust_box" class="itemlist_area cfix">
+						<div class="popular_illust_block">
+							<div class="popular_illust_block__title">
+								<h2>
+									最新作品
+								</h2>
+								<a href="/illust/ranking/">
+									全部显示
+								</a>
+							</div>
+              <div class="popular_illust_block__itemlist">
+              <?php include("./action/database.php");
+              $sql_select = "SELECT * FROM manga_main ORDER BY id DESC LIMIT 0,1;";
+              $ret = mysqli_query($conn,$sql_select);
+              $row = mysqli_fetch_array($ret);
+              $mangaid = 1 + $row["id"];
+              for($x = 1; $x < $mangaid; $x++){
+                $sql_select="SELECT title,author,introduce FROM manga_main WHERE id = '$x'";
+                //执行SQL语句
+                $ret = mysqli_query($conn,$sql_select);
+                $row = mysqli_fetch_array($ret);
+                include ( "./action/index/newmanga.php");
+               } 
+                ?>
+                <!--块结束-->
+							</div>
+						</div>
+					</div>
+					<div id="top_popular_manga_box" class="itemlist_area cfix">
+						<div class="popular_manga_block">
+							<div class="popular_manga_block__title">
+								<h2>
+									人气作品
+								</h2>
+								<a href="/manga/ranking?track=seiga_rank">
+									全部显示
+								</a>
+							</div>
+              <!--块开始-->
+							<div class="popular_manga_block__itemlist">
+								<div class="popular_manga_block__item">
+									<div class="popular_manga_block__item__thumbnail">
+										<a href="/comic/35172?track=top_ranking">
+											<img class="lazyload" data-original="./img/thumb/11857291q.png"
+											alt="" src="./img/thumb/11857291q.png"
+											style="display: inline;">
+										</a>
+									</div>
+									<div class="popular_manga_block__item__info">
+										<span class="popular_manga_block__item__info--title">
+											<a href="/comic/35172?track=top_ranking">
+												test
+											</a>
+										</span>
+										<span class="popular_manga_block__item__info--nickname">
+											test
+										</span>
+									</div>
+								</div>
+							</div>
+              <!--块结束-->
+						</div>
+					</div>
+				</div>
+				<div id="main_area_r">
+					<div id="top_personalize_box--nologin">
+						<div class="top_personalize_block">
+							<div class="top_personalize_block__header">
+								收藏的漫画
+							</div>
+							<div class="top_personalize_block__body">
+								<div class="top_personalize_block__body__message">
+                  <img src="./img/index/icon_no_login.svg">
 								</div>
 							</div>
 						</div>
-						<div class=clear>
-						</div>
-					</div>
-					<div class="ads_sidewall left" id=pc_seiga_top_228x1024_sidewall_left
-					style=width:0px;display:block;left:0px>
-					</div>
-					<div class="ads_sidewall right" id=pc_seiga_top_228x1024_sidewall_right
-					style=width:0px;display:block;right:0px>
-					</div>
-				</div>
-				<div id=ad_728_90 class=sf-hidden>
-					<div id=ads_pc_seiga_footer class=sf-hidden>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class=layui-xzxform-label>
-		</div>
+	</div>
+</body>

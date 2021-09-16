@@ -7,7 +7,7 @@
     //判断用户名和密码是否为空
     if(!empty($username)&&!empty($password)) {
         //建立连接
-        $conn = mysqli_connect('localhost','test123','test123','test123');
+        include("./database.php");
         //准备SQL语句
         $sql_select = "SELECT username,password FROM user WHERE username = '$username' AND password = '$password'";
         //执行SQL语句
@@ -26,19 +26,6 @@
             session_start();
             //创建session
             $_SESSION['user']=$username;
-            
-            /*
-            //写入日志
-            $ip = $_SERVER['REMOTE_ADDR'];
-            $date = date('Y-m-d H:m:s');
-            $info = sprintf("当前访问用户：%s,IP地址：%s,时间：%s \n",$username, $ip, $date);
-
-            //日志写入文件，如实现此功能，需要创建文件目录logs
-            $f = fopen('./logs/'.date('Ymd').'.log','a+');
-
-            fwrite($f,$info);
-            fclose($f);
-            */
             //跳转到主页
             header("Location:../index.php");
             //关闭数据库
