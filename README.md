@@ -6,6 +6,9 @@
 <img width="256px" height="256px" src="/img/logo.svg"/>
 </p>
 
+<br>
+<br>
+
 ## 技术栈
 
 <br><br>
@@ -20,11 +23,60 @@
 
 此程序网站暂未完全使用数据库，任何数据存储可能是php检测文件数量或者获取json
 
+<br>
+<br>
+
 ## 更新
+
+### 2021.9.12
+
+重新编写所有页面（除了登录注册与导航栏为小改）
+
+并且接入了本人另一个仓库[bili漫画下载](https://github.com/misaka10843/bili-manga-download)
+
+将新版分支改为v2，并打算保留v1(main)分支
+
+重写数据库，更加直观？
+
+（谁会用vue+php啊qwq）
+
+### 2021.8.31
+
+因为考虑到前后端分离以及php转vue的麻烦程度，不考虑使用vue构建前端，而继续使用原生php
+
+### 2021.8.30
+
+修复数据库，请注意数据库的账号密码库名必须是`test123`
+
+或者您在`loginaction.php`,`registeraction.php`,`useraction.php`,`index.php`,`user.php`中搜索相关字符串来修改数据库(暂时未达到中控)
+
+### 2021.8.29
+
+项目将会以vue为前端来重新构建qwq
+
+![在写了在写了qwq](https://i.loli.net/2021/08/29/ziC47oAwldfpycv.png)
+
 ### 2021.7.19
+
 因为上游服务器遭到挖矿程序植入，情急之下未备份就直接重置应用，导致最新文件与数据库丢失，所以我们计划重构此项目并且计划使用MongoDB数据库
+
 ### 2021.6.23
+
 更新了一堆的东西，并且将部分数据转移至MySQL（数据库暂不能放出文件，请谅解）
+
+<br>
+<br>
+
+## 特性(bug与类似bug)[打√为已验证]
+### bug
+- [ ] 暂无
+
+### 类似bug
+
+- [x] 网站域名只能绑定一个,比如`1.com`而不能绑定`1.com`和`2.com`,不然会将setting.json的路径输出为`http://1.com2.com` 
+
+<br>
+<br>
 
 ## 一些截图
 
@@ -36,6 +88,9 @@
 <img src="https://i.loli.net/2021/06/23/cy63dqoG4vzlLMO.png"/>
 <img src="https://i.loli.net/2021/06/23/2Bn87gtPZV5xJIf.png"/>
 </p>
+
+<br>
+<br>
 
 ## README统计
 ![统计](https://count.getloli.com/get/@misaka10843?theme=elbooru)
