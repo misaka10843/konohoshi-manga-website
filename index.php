@@ -29,22 +29,20 @@ $ismain = "1";
 								<ul id="top_pickup_list" class="cfix" style="margin: 0px; padding: 0px; position: relative; list-style: none; z-index: 1; ">
 
 									<!--块开始-->
-                  <li class="top_pickup_list_item top_pickup_list_item--manga" style="overflow: hidden; float: left; width: 180px; height: 216px;">
-										<a href="/comic/manga.php?id=">
-											<span class="pickup_thumnail" style="background-color: rgb(1, 85, 209)">
-												<img src="https://deliver.cdn.nicomanga.jp/material/07cb2d/6844345qa?1562905486"
-												alt="">
-											</span>
-											<span class="pickup_txt">
-												
-											</span>
-											<span class="pickup_label">
-												<img src="/img/index/label_manga.png" width="60" height="36"
-												alt="">
-											</span>
-										</a>
-									</li>
-
+                  <?php include("./action/database.php");
+              $sql_select = "SELECT title,tag,date FROM manga_main WHERE ispickup = '1'";
+              $ret = mysqli_query($conn,$sql_select);
+              $row = mysqli_fetch_array($ret);
+              echo count($arr);
+              $newsid = 1 + $row["id"];
+              for($x = 1; $x < $newsid && $x < 6; $x++){
+                $sql_select="SELECT title,tag,date FROM manga_news WHERE id = '$x'";
+                //执行SQL语句
+                $ret = mysqli_query($conn,$sql_select);
+                $news = mysqli_fetch_array($ret);
+                include ("./action/index/pickup.php");
+               } 
+                ?>
                   <!--块结束-->
 								</ul>
 							</div>
