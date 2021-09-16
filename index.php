@@ -64,19 +64,19 @@ $ismain = "1";
 							</div>
 							<ul class="top_news_block__itemlist">
                 <!--块开始-->
-								<li class="top_news_block__item">
-									<div class="top_news_block__item__category top_news_block__item__category--manga">
-										漫画
-									</div>
-									<div class="top_news_block__item__date">
-										2021年09月01日
-									</div>
-									<div class="top_news_block__item__title">
-										<a href="https://info.nicomanga.jp/entry/2021/09/01/133558" rel="nofollow">
-											内容
-										</a>
-									</div>
-								</li>
+                <?php include("./action/database.php");
+              $sql_select = "SELECT * FROM manga_news ORDER BY id DESC LIMIT 0,1;";
+              $ret = mysqli_query($conn,$sql_select);
+              $row = mysqli_fetch_array($ret);
+              $newsid = 1 + $row["id"];
+              for($x = 1; $x < $newsid && $x < 6; $x++){
+                $sql_select="SELECT title,tag,date FROM manga_news WHERE id = '$x'";
+                //执行SQL语句
+                $ret = mysqli_query($conn,$sql_select);
+                $news = mysqli_fetch_array($ret);
+                include ("./action/index/newnews.php");
+               } 
+                ?>
                 <!--块结束-->
 							</ul>
 						</div>
