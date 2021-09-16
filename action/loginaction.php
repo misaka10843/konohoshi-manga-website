@@ -26,19 +26,6 @@
             session_start();
             //创建session
             $_SESSION['user']=$username;
-            
-            /*
-            //写入日志
-            $ip = $_SERVER['REMOTE_ADDR'];
-            $date = date('Y-m-d H:m:s');
-            $info = sprintf("当前访问用户：%s,IP地址：%s,时间：%s \n",$username, $ip, $date);
-
-            //日志写入文件，如实现此功能，需要创建文件目录logs
-            $f = fopen('./logs/'.date('Ymd').'.log','a+');
-
-            fwrite($f,$info);
-            fclose($f);
-            */
             //跳转到主页
             header("Location:../index.php");
             //关闭数据库

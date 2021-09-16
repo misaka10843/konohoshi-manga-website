@@ -91,34 +91,20 @@ $ismain = "1";
 									全部显示
 								</a>
 							</div>
-							<div class="popular_illust_block__itemlist">
-                <!--块开始-->
-								<div class="popular_illust_block__item">
-									<a href="/seiga/im10806272?track=top_ranking">
-										<div class="popular_illust_block__item__thumbnail">
-											<div class="center_img  ">
-												<span class="center_img_inner">
-													<img class="lazyload" data-original="/img/thumb/10806272q.png"
-													alt="" src="./img/thumb/10806272q.png" style="display: inline;">
-													<span class="center_img_spring">
-														&nbsp;
-													</span>
-												</span>
-											</div>
-										</div>
-										<div class="popular_illust_block__item__info">
-											<span class="popular_illust_block__item__info--title">
-												test
-											</span>
-											<span class="popular_illust_block__item__info--nickname">
-												test
-											</span>
-										</div>
-										<div class="popular_illust_block__item__info--comment_summary">
-											简介
-										</div>
-									</a>
-								</div>
+              <div class="popular_illust_block__itemlist">
+              <?php include("./action/database.php");
+              $sql_select = "SELECT * FROM manga_main ORDER BY id DESC LIMIT 0,1;";
+              $ret = mysqli_query($conn,$sql_select);
+              $row = mysqli_fetch_array($ret);
+              $mangaid = 1 + $row["id"];
+              for($x = 1; $x < $mangaid; $x++){
+                $sql_select="SELECT title,author,introduce FROM manga_main WHERE id = '$x'";
+                //执行SQL语句
+                $ret = mysqli_query($conn,$sql_select);
+                $row = mysqli_fetch_array($ret);
+                include ( "./action/index/newmanga.php");
+               } 
+                ?>
                 <!--块结束-->
 							</div>
 						</div>
