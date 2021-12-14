@@ -1,0 +1,5 @@
+location / {
+     try_files $uri $uri/ $uri.php$is_args$args;
+     rewrite ^/api/category_swiper/(.*)/$ /api/index/category_swiper.php/?id=$1; 
+     rewrite ^/comic/(.*)$ /comic/info.php?id=$1; 
+ }

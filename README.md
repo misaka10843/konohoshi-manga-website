@@ -16,7 +16,7 @@
 <img src="https://img.shields.io/badge/-JavaScript-f7e018?style=flat-square&logo=javascript&logoColor=white" />
 <img src="https://img.shields.io/badge/-HTML5-E34F26?style=flat-square&logo=html5&logoColor=white" />
 <img src="https://img.shields.io/badge/-CSS3-1572B6?style=flat-square&logo=css3&logoColor=white" />
-<img src="https://img.shields.io/badge/PHP7.2-777bb3?style=flat-square&logo=PHP&logoColor=white"/>
+<img src="https://img.shields.io/badge/PHP7.3-777bb3?style=flat-square&logo=PHP&logoColor=white"/>
   <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=MySQL&logoColor=white"/>
 </p>
 <br><br>
@@ -27,6 +27,14 @@
 <br>
 
 ## 更新
+
+### 2021.12.14
+
+重新构建V3版本，使用`Ajax`来请求数据，`php`制作api，并且使用`swiper.js`制作主页的漫画列表与轮播图
+
+理论来说更轻量，响应更快
+
+（CSS仿照[comic-fuz](https://www.comic-fuz.com)）
 
 ### 2021.11.14
 
@@ -83,12 +91,12 @@
 
 ### 类似bug
 
-- [x] 网站域名只能绑定一个,比如`1.com`而不能绑定`1.com`和`2.com`,不然会将setting.json的路径输出为`http://1.com2.com` 
+- [ ] 暂无
 
 <br>
 <br>
 
-## 一些截图
+## 一些截图(V3不为此截图)
 
 <p align="center">
 <img src="https://i.loli.net/2021/06/23/FeMDtR4lAmSvc9k.png"/>

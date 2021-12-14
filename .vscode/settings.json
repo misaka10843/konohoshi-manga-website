@@ -8,10 +8,10 @@
       "server": "localhost",
       "port": 3306,
       "driver": "MySQL",
-      "name": "manga",
-      "database": "manga",
-      "username": "manga",
-      "password": "Aa111111"
+      "name": "test321",
+      "database": "test321",
+      "username": "test321",
+      "password": "test321"
     }
   ]
 }

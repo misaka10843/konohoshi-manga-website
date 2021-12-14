@@ -1,163 +1,168 @@
-<?php define( 'misaka', TRUE); 
-$isview = "0";
-$ismain = "1";
+<?php 
+  define( "cGB5mhZv7CoCki1JnbaK", TRUE); 
+  include("./header.php"); 
 ?>
-	<!DOCTYPE html>
-	<html lang="zh">
-		<head>
-			<?php include ( "header.php");?>
-		</head>
-<body class="seigatop seiga">
-<?php include ( "nav.php");?>
-<link href="/css/index.css" rel="stylesheet">
-	<div id="wrapper">
-		<div id="main" class="cfix">
-			<div id="content" class="cfix">
-				<div id="top_pickup_area">
-					<h2>
-						<strong>
-							PICKUP CONTENTS!
-						</strong>
-						<span class="line">
-							|
-						</span>
-						运营推荐
-					</h2>
-					<div style="position: absolute;padding-top: 7px">
-						<div id="top_pickup_list_wrapper">
-							<div id="top_pickup_list_items" style="visibility: visible; overflow: hidden; position: relative; z-index: 2; left: 0px; width: 950px;">
-								<ul id="top_pickup_list" class="cfix" style="margin: 0px; padding: 0px; position: relative; list-style: none; z-index: 1; ">
+<script>
+get_top_swiper();
+get_main_time_swiper();
+get_category_swiper();
+function top_swiper() {
 
-									<!--块开始-->
-                  <?php include("./action/database.php");
-              $sql_select = "SELECT title,tag,date FROM manga_main WHERE ispickup = '1'";
-              $ret = mysqli_query($conn,$sql_select);
-              $row = mysqli_fetch_array($ret);
-              echo count($arr);
-              $newsid = 1 + $row["id"];
-              for($x = 1; $x < $newsid && $x < 6; $x++){
-                $sql_select="SELECT title,tag,date FROM manga_news WHERE id = '$x'";
-                //执行SQL语句
-                $ret = mysqli_query($conn,$sql_select);
-                $news = mysqli_fetch_array($ret);
-                include ("./action/index/pickup.php");
-               } 
-                ?>
-                  <!--块结束-->
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div id="main_area_l" class="main_content">
-					<div id="top_news_box" class="cfix">
-						<div class="top_news_block">
-							<div class="top_news_block__title">
-								<h2>
-									通知
-								</h2>
-								<a href="https://blog.nicovideo.jp/seiga/">
-									全部显示
-								</a>
-							</div>
-							<ul class="top_news_block__itemlist">
-                <!--块开始-->
-                <?php include("./action/database.php");
-              $sql_select = "SELECT * FROM manga_news ORDER BY id DESC LIMIT 0,1;";
-              $ret = mysqli_query($conn,$sql_select);
-              $row = mysqli_fetch_array($ret);
-              $newsid = 1 + $row["id"];
-              for($x = 1; $x < $newsid && $x < 6; $x++){
-                $sql_select="SELECT title,tag,date FROM manga_news WHERE id = '$x'";
-                //执行SQL语句
-                $ret = mysqli_query($conn,$sql_select);
-                $news = mysqli_fetch_array($ret);
-                include ("./action/index/newnews.php");
-               } 
-                ?>
-                <!--块结束-->
-							</ul>
-						</div>
-					</div>
-					<div id="top_popular_illust_box" class="itemlist_area cfix">
-						<div class="popular_illust_block">
-							<div class="popular_illust_block__title">
-								<h2>
-									最新作品
-								</h2>
-								<a href="/illust/ranking/">
-									全部显示
-								</a>
-							</div>
-              <div class="popular_illust_block__itemlist">
-              <?php include("./action/database.php");
-              $sql_select = "SELECT * FROM manga_main ORDER BY id DESC LIMIT 0,1;";
-              $ret = mysqli_query($conn,$sql_select);
-              $row = mysqli_fetch_array($ret);
-              $mangaid = 1 + $row["id"];
-              for($x = 1; $x < $mangaid; $x++){
-                $sql_select="SELECT title,author,introduce FROM manga_main WHERE id = '$x'";
-                //执行SQL语句
-                $ret = mysqli_query($conn,$sql_select);
-                $row = mysqli_fetch_array($ret);
-                include ( "./action/index/newmanga.php");
-               } 
-                ?>
-                <!--块结束-->
-							</div>
-						</div>
-					</div>
-					<div id="top_popular_manga_box" class="itemlist_area cfix">
-						<div class="popular_manga_block">
-							<div class="popular_manga_block__title">
-								<h2>
-									人气作品
-								</h2>
-								<a href="/manga/ranking?track=seiga_rank">
-									全部显示
-								</a>
-							</div>
-              <!--块开始-->
-							<div class="popular_manga_block__itemlist">
-								<div class="popular_manga_block__item">
-									<div class="popular_manga_block__item__thumbnail">
-										<a href="/comic/35172?track=top_ranking">
-											<img class="lazyload" data-original="./img/thumb/11857291q.png"
-											alt="" src="./img/thumb/11857291q.png"
-											style="display: inline;">
-										</a>
-									</div>
-									<div class="popular_manga_block__item__info">
-										<span class="popular_manga_block__item__info--title">
-											<a href="/comic/35172?track=top_ranking">
-												test
-											</a>
-										</span>
-										<span class="popular_manga_block__item__info--nickname">
-											test
-										</span>
-									</div>
-								</div>
-							</div>
-              <!--块结束-->
-						</div>
-					</div>
-				</div>
-				<div id="main_area_r">
-					<div id="top_personalize_box--nologin">
-						<div class="top_personalize_block">
-							<div class="top_personalize_block__header">
-								收藏的漫画
-							</div>
-							<div class="top_personalize_block__body">
-								<div class="top_personalize_block__body__message">
-                  <img src="./img/index/icon_no_login.svg">
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+	var topswiper = new Swiper(".top-swiper", {
+		slidesPerView: "auto",
+		centeredSlides: true,
+		centeredSlidesBounds: true,
+		loop: true,
+		preloadImages: false,
+		lazy: {
+			loadPrevNext: true,
+			loadPrevNextAmount: 5,
+		},
+		autoplay: {
+			delay: 5000,
+			disableOnInteraction: false,
+		},
+	});
+}
+function time_swiper() {
+	var mainswiper = new Swiper(".main-swiper", {
+		slidesPerView: "auto",
+		centeredSlides: true,
+		centeredSlidesBounds: true,
+		preloadImages: false,
+		spaceBetween: 30,
+		freeMode: true,
+		lazy: {
+			loadPrevNext: true,
+			loadPrevNextAmount: 5,
+		},
+		navigation: {
+			nextEl: ".swiper-button-next",
+			prevEl: ".swiper-button-prev",
+		},
+	});
+}
+function category_swiper() {
+	var mainswiper = new Swiper(".category-swiper", {
+		slidesPerView: "auto",
+		centeredSlides: true,
+		centeredSlidesBounds: true,
+		preloadImages: false,
+		spaceBetween: 30,
+		freeMode: true,
+		lazy: {
+			loadPrevNext: true,
+			loadPrevNextAmount: 5,
+		},
+		navigation: {
+			nextEl: ".swiper-button-next",
+			prevEl: ".swiper-button-prev",
+		},
+	});
+}
+function get_top_swiper() {
+	$.ajax({
+		url: "/api/index/top_swiper",
+		type: "get",
+		dataType: "json",
+		success: function(data) {
+			var item = data.data;
+			var htm = "";
+			for (var i = 0; i < item.length; i++) {
+				htm += "<div class='swiper-slide'><a href='" + item[i].url + "'><img class='Banner_banner swiper-lazy' data-src='" + item[i].thumbnail + "'></a></div>";
+			}
+			$("#top-swiper-list").append(htm);
+			top_swiper();
+		},
+		error: function(XMLHttpRequest, textStatus, errorThrown) {
+			alert(XMLHttpRequest.status);
+			alert(XMLHttpRequest.readyState);
+			alert(textStatus);
+		},
+	})
+
+}
+function get_main_time_swiper() {
+	$.ajax({
+		url: "/api/index/time_swiper",
+		type: "get",
+		dataType: "json",
+		success: function(data) {
+			var item = data.data;
+			var htm = "";
+			for (var i = 0; i < item.length; i++) {
+				htm += "<div class='swiper-slide TitleSection_slide swiper-slide-active'><a class='Title_title Title_title__swiper' href='/comic/" + item[i].id + "'><img class='Title_title__thumbnail Title_title__thumbnail__swiper FUZImage_image__manga__38_gb swiper-lazy'data-src='" + item[i].thumbnail + "'><i class='Title_title__badge Title_title__update'>更新</i><h3 class='Title_title__name'>	<span class='Title_title__mangaName'>" + item[i].name + "</span></h3><p class='Title_title__description Title_title__info'>" + item[i].survey + "</p></a></div>";
+			}
+			$("#time-swiper-list").append(htm);
+			time_swiper();
+		},
+		error: function(XMLHttpRequest, textStatus, errorThrown) {
+			alert(XMLHttpRequest.status);
+			alert(XMLHttpRequest.readyState);
+			alert(textStatus);
+		},
+	})
+
+}
+function get_category_swiper() {
+	$.ajax({
+		url: "/api/index/category",
+		type: "get",
+		dataType: "json",
+		success: function(data) {
+			var item = data.data;
+			var htm = "";
+			for (var i = 0; i < item.length; i++) {
+				htm += "<section class='TitleSection_titles'><h2 class='TitleSection_header'>" + item[i].name + "</h2><a class='TitleSection_more' href='/" + item[i].url + "'>查看更多</a><div class='swiper category-swiper TitleSection_titles'><div class='swiper-button-prev swiper-button-disabled'></div><div class='swiper-button-next'></div><div id='time-swiper-list' class='swiper-wrapper'>";
+				var comic_item = item[i].data;
+				for (var o = 0; o < comic_item.length; o++) {
+					htm += "<div class='swiper-slide TitleSection_slide swiper-slide-active'><a class='Title_title Title_title__swiper' href='/comic/" + comic_item[o].id + "'><img class='Title_title__thumbnail Title_title__thumbnail__swiper FUZImage_image__manga__38_gb swiper-lazy'data-src='" + comic_item[o].thumbnail + "'><i class='Title_title__badge Title_title__update'>更新</i><h3 class='Title_title__name'>	<span class='Title_title__mangaName'>" + comic_item[o].name + "</span></h3><p class='Title_title__description Title_title__info'>" + comic_item[o].survey + "</p></a></div>";
+				}
+				htm += "</div></div></section>";
+			}
+			$("#category-swiper-list").append(htm);
+			category_swiper();
+		},
+		error: function(XMLHttpRequest, textStatus, errorThrown) {
+			alert(XMLHttpRequest.status);
+			alert(XMLHttpRequest.readyState);
+			alert(textStatus);
+		},
+	})
+
+}
+</script>
+<main class="top_top">
+	<div class="swiper top-swiper">
+		<div id="top-swiper-list" class="swiper-wrapper">
+      <!-- API内容填充 -->
+		</div>
+		<div class="swiper-pagination">
 		</div>
 	</div>
-</body>
+	<div class="top_top__titles">
+		<section class="TitleSection_titles">
+			<h2 class="TitleSection_header">
+				最近更新作品
+			</h2>
+			<a class="TitleSection_more" href="/rensai">
+				查看更多
+			</a>
+			<div class="swiper main-swiper TitleSection_titles">
+				<div class="swiper-button-prev swiper-button-disabled">
+				</div>
+				<div class="swiper-button-next">
+				</div>
+				<div id="time-swiper-list" class="swiper-wrapper">
+					<!-- API内容填充 -->
+				</div>
+			</div>
+		</section>
+	</div>
+  <div id="category-swiper-list" class="top_top__titles">
+    <!-- API内容填充 -->
+  </div>
+</main>
+<?php 
+  include("./footer.php"); 
+?>
