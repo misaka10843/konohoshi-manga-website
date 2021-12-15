@@ -1,10 +1,18 @@
-# manga-website
+# konohoshi
 
-<p align="center">
+ <p align="center">
+<img width="256px" height="256px" src="/assets/img/logo.png"/>
+<br>
+<br>
+<strong>konohoshi</strong>
+ </p>
+ <p align="center">
 一个自主研发的一个漫画网站（正在缓慢制作中qwq）
 <br>
-<img width="256px" height="256px" src="/img/logo.svg"/>
-</p>
+  (其中，konohoshi取自漫画<strong>星灵感应</strong>中的<strong>小之星海果</strong>的姓氏罗马音)
+ </p>
+
+
 
 <br>
 <br>
