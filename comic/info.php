@@ -6,6 +6,7 @@
 <script>
 get_comic_info();
 get_comic_info_category();
+
 function get_comic_info() {
   var urlStr = location.pathname.match('[^/]+(?!.*/)')[0];
 	$.ajax({
@@ -16,6 +17,7 @@ function get_comic_info() {
 			$("#introduction").append(data.introduction);
       $("#comic_name").append(data.name);
       $("#author").append(data.author);
+      $("#manga_thumbnail").attr('data-original',data.thumbnail);
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown) {
 			alert(XMLHttpRequest.status);
@@ -41,7 +43,7 @@ function get_comic_info_category() {
         }else{
           isfree = "付费";
         }
-				htm += "<a class=\"Chapter_chapter false\" href='" + item[i].id + "'><div class=\"Chapter_chapter__thumbnail_wrapper\"><img class=\"Chapter_chapter__thumbnail  FUZImage_image__manga\" data-src=\"" + item[i].thumbnail + "\"></div><div class=\"Chapter_chapter__detail\"><h3 class=\"Chapter_chapter__name\">" + item[i].chapter_name + "</h3><p class=\"Chapter_chapter__subName\"></p><p class=\"Chapter_chapter__updateDate\">2019/03/12</p><div class=\"Chapter_chapter__bottom\"><div class=\"Chapter_chapter__userAction\"><div class=\"Chapter_chapter__userAction_item\"><img class=\"Chapter_chapter__userAction_icon\" src=\"https://comic-fuz.com/assets/manga_detail/like.svg\"><p class=\"Chapter_chapter__userAction_text\">" + item[i].like_num + "</p></div></div><p class=\"Chapter_chapter__price_free\">" + isfree + "</p></div></div></a>";
+				htm += "<a class=\"Chapter_chapter false\" href='" + item[i].id + "'><div class=\"Chapter_chapter__thumbnail_wrapper\"><img class=\"Chapter_chapter__thumbnail  FUZImage_image__manga\" data-original=\"" + item[i].thumbnail + "\"></div><div class=\"Chapter_chapter__detail\"><h3 class=\"Chapter_chapter__name\">" + item[i].chapter_name + "</h3><p class=\"Chapter_chapter__subName\"></p><p class=\"Chapter_chapter__updateDate\">2019/03/12</p><div class=\"Chapter_chapter__bottom\"><div class=\"Chapter_chapter__userAction\"><div class=\"Chapter_chapter__userAction_item\"><img class=\"Chapter_chapter__userAction_icon\" src=\"https://comic-fuz.com/assets/manga_detail/like.svg\"><p class=\"Chapter_chapter__userAction_text\">" + item[i].like_num + "</p></div></div><p class=\"Chapter_chapter__price_free\">" + isfree + "</p></div></div></a>";
 			}
 			$("#comic_info_category_list").append(htm);
 		},
@@ -70,7 +72,7 @@ function get_comic_info_category_inverted() {
           isfree = "付费";
         }
         var update_time = item[i].update_time;
-				htm += "<a class=\"Chapter_chapter false\" href='" + item[i].id + "'><div class=\"Chapter_chapter__thumbnail_wrapper\"><img class=\"Chapter_chapter__thumbnail  FUZImage_image__manga\" data-src=\"" + item[i].thumbnail + "\"></div><div class=\"Chapter_chapter__detail\"><h3 class=\"Chapter_chapter__name\">" + item[i].chapter_name + "</h3><p class=\"Chapter_chapter__subName\"></p><p class=\"Chapter_chapter__updateDate\">" + update_time + "</p><div class=\"Chapter_chapter__bottom\"><div class=\"Chapter_chapter__userAction\"><div class=\"Chapter_chapter__userAction_item\"><img class=\"Chapter_chapter__userAction_icon\" src=\"https://comic-fuz.com/assets/manga_detail/like.svg\"><p class=\"Chapter_chapter__userAction_text\">" + item[i].like_num + "</p></div></div><p class=\"Chapter_chapter__price_free\">" + isfree + "</p></div></div></a>";
+				htm += "<a class=\"Chapter_chapter false\" href='" + item[i].id + "'><div class=\"Chapter_chapter__thumbnail_wrapper\"><img class=\"Chapter_chapter__thumbnail  FUZImage_image__manga\" data-original=\"" + item[i].thumbnail + "\"></div><div class=\"Chapter_chapter__detail\"><h3 class=\"Chapter_chapter__name\">" + item[i].chapter_name + "</h3><p class=\"Chapter_chapter__subName\"></p><p class=\"Chapter_chapter__updateDate\">" + update_time + "</p><div class=\"Chapter_chapter__bottom\"><div class=\"Chapter_chapter__userAction\"><div class=\"Chapter_chapter__userAction_item\"><img class=\"Chapter_chapter__userAction_icon\" src=\"https://comic-fuz.com/assets/manga_detail/like.svg\"><p class=\"Chapter_chapter__userAction_text\">" + item[i].like_num + "</p></div></div><p class=\"Chapter_chapter__price_free\">" + isfree + "</p></div></div></a>";
 			}
 			$("#comic_info_category_list").append(htm);
 		},
@@ -84,14 +86,18 @@ function get_comic_info_category_inverted() {
 }
 
 
+//防止先出发lazyload再触发获取数据
 
+setTimeout(function(){
+	$("img").lazyload();
+},600);
 </script>
 <div>
 	<div class="title_detail_introduction">
 		<div class="title_detail_introduction__wrapper">
 			<div class="title_detail_introduction__topSection">
-				<img class="title_detail_introduction__thumbnail FUZImage_image__manga"
-				data-original="https://img.comic-fuz.com/c/1xjnt5/98.webp?h=J2suSM16KZo03vEZwAFg5w&amp;e=5000000000">
+				<img id="manga_thumbnail" class="title_detail_introduction__thumbnail FUZImage_image__manga"
+				data-original="">
 				<div class="title_detail_introduction__misc">
 					<div class="title_detail_introduction__top">
 						<h1 id="comic_name" class="title_detail_introduction__name">

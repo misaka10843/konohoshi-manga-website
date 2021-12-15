@@ -11,7 +11,7 @@ $sql_select = "SELECT name,thumbnail,introduction,author FROM comic_book_info WH
 $ret = mysqli_query($db,$sql_select);
 $row = mysqli_fetch_array($ret);
 if($row){
-  $arr = "{\"code\":200,\"id\":\"{$_GET["id"]}\",\"introduction\":\"{$row["introduction"]}\",\"name\":\"{$row["name"]}\",\"author\":\"{$row["author"]}\"}";
+  $arr = "{\"code\":200,\"id\":\"{$_GET["id"]}\",\"introduction\":\"{$row["introduction"]}\",\"name\":\"{$row["name"]}\",\"thumbnail\":\"{$row["thumbnail"]}\",\"author\":\"{$row["author"]}\"}";
 }else{
   $arr = "{\"code\":404,\"error\":\"sql not found\"}";
 }

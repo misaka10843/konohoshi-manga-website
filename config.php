@@ -9,9 +9,9 @@ if(!defined("KRJbfpF9kMovM8BoBBgi")) {
  *************************************************/
 //数据库信息
 $dbhost = "127.0.0.1";
-$username = "test321";
-$password = "test321";
-$database = "test321";
+$username = "comic123";
+$password = "comic123";
+$database = "comic123";
 
 $db=new mysqli($dbhost,$username,$password,$database);
 if(mysqli_connect_error()){
