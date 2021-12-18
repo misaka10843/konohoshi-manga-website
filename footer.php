@@ -23,7 +23,7 @@
     			<div class="Footer_footer__iconSection">
     				<img class="Footer_footer__icon" src="https://comic-fuz.com/assets/logo/fuz_logo.png">
     				<p class="Footer_footer__iconjText">
-    					qwq
+            konohoshi——一个自主研制(?)的漫画网站
     				</p>
     			</div>
     		</div>
